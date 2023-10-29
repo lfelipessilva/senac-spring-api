@@ -41,9 +41,9 @@ git clone https://github.com/Fernanda-Kipper/auth-api.git
 The API provides the following endpoints:
 
 ```markdown
-GET /product - Retrieve a list of all products. (all authenticated users)
+GET /discipline - Retrieve a list of all disciplines. (all authenticated users)
 
-POST /product - Register a new product (ADMIN access required).
+POST /discipline - Register a new discipline (ADMIN access required).
 
 POST /auth/login - Login into the App
 
