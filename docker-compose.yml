@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-8-container
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: senac
+      MYSQL_USER: api
+      MYSQL_PASSWORD: 123123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - mysql-net
+
+volumes:
+  mysql-data:
+
+networks:
+  mysql-net:
