@@ -26,12 +26,18 @@ The API was developed for my [Youtube Tutorial](https://www.youtube.com/watch?v=
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Fernanda-Kipper/auth-api.git
+git clone https://github.com/lfelipessivla/senac-spring-api.git
 ```
 
-2. Install dependencies with Maven
+2. Instale as dependências com o Maven
 
-3. Install [PostgresSQL](https://www.postgresql.org/)
+3. Instale o  [Mysql](https://www.mysql.com/)
+
+4. Insira as credênciais do banco no application.properties
+
+5. Rode o comando SQL dentro de /resources/db/migration manualmente no banco
+
+6. Ou você pode rodar usando docker-compose
 
 ## Usage
 
@@ -43,10 +49,6 @@ git clone https://github.com/Fernanda-Kipper/auth-api.git
 The API provides the following endpoints:
 
 ```markdown
-GET /product - Retrieve a list of all products. (all authenticated users)
-
-POST /product - Register a new product (ADMIN access required).
-
 POST /auth/login - Login into the App
 
 POST /auth/register - Register a new user into the App
@@ -60,16 +62,3 @@ USER -> Standard user role for logged-in users.
 ADMIN -> Admin role for managing partners (registering new partners).
 ```
 To access protected endpoints as an ADMIN user, provide the appropriate authentication credentials in the request header.
-
-## Database
-The project utilizes [PostgresSQL](https://www.postgresql.org/) as the database. The necessary database migrations are managed using Flyway.
-
-## Contributing
-
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request to the repository.
-
-When contributing to this project, please follow the existing code style, [commit conventions](https://www.conventionalcommits.org/en/v1.0.0/), and submit your changes in a separate branch.
-
-
-
-
