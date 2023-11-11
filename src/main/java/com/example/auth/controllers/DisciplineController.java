@@ -19,16 +19,18 @@ public class DisciplineController {
     DisciplineRepository repository;
 
     @PostMapping
-    public ResponseEntity postDiscipline(@RequestBody @Valid DisciplineRequestDTO body){
+    public ResponseEntity postDiscipline(@RequestBody @Valid DisciplineRequestDTO body) {
         Discipline newDiscipline = new Discipline(body);
+        System.err.println(newDiscipline);
 
         this.repository.save(newDiscipline);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    public ResponseEntity getAllDisciplines(){
-        List<DisciplineResponseDTO> disciplineList = this.repository.findAll().stream().map(DisciplineResponseDTO::new).toList();
+    public ResponseEntity<List<DisciplineResponseDTO>> getAllDisciplines() {
+        List<DisciplineResponseDTO> disciplineList = this.repository.findAll().stream().map(DisciplineResponseDTO::new)
+                .toList();
 
         return ResponseEntity.ok(disciplineList);
     }
