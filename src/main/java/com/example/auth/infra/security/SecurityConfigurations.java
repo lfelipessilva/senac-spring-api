@@ -29,8 +29,12 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        /* Start Discipline */
                         .requestMatchers(HttpMethod.POST, "/discipline").hasAuthority("admin")
+                        .requestMatchers(HttpMethod.PUT, "/discipline").hasAuthority("admin")
+                        .requestMatchers(HttpMethod.DELETE, "/discipline").hasAuthority("admin")
                         .requestMatchers(HttpMethod.GET, "/discipline").hasAnyAuthority("professor", "aluno", "admin")
+                        /* End Discipline */
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
