@@ -49,6 +49,10 @@ git clone https://github.com/lfelipessivla/senac-spring-api.git
 The API provides the following endpoints:
 
 ```markdown
+GET /discipline - Retrieve a list of all disciplines. (all authenticated users)
+
+POST /discipline - Register a new discipline (ADMIN access required).
+
 POST /auth/login - Login into the App
 
 POST /auth/register - Register a new user into the App
