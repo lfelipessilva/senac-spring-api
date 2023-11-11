@@ -22,25 +22,35 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private String login;
-    private String password;
+    private String nome;
+    private String email;
+    private String senha;
+    private String cpf;
+    private String dataNascimento;
+    private String endereco;
+    private String telefone;
     private UserRole role;
 
-    public User(String login, String password, UserRole role){
-        this.login = login;
-        this.password = password;
+    public User(String email, String senha, UserRole role) {
+        this.email = email;
+        this.senha = senha;
         this.role = role;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        if (this.role == UserRole.aluno)
+            return List.of(new SimpleGrantedAuthority("aluno"));
+        else if (this.role == UserRole.professor)
+            return List.of(new SimpleGrantedAuthority("professor"));
+        else
+            return List.of(new SimpleGrantedAuthority("admin"), new SimpleGrantedAuthority("professor"),
+                    new SimpleGrantedAuthority("aluno"));
     }
 
     @Override
     public String getUsername() {
-        return login;
+        return email;
     }
 
     @Override
@@ -61,5 +71,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String getPassword() {
+        return senha;
     }
 }
