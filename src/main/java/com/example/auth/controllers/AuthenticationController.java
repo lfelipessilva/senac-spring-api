@@ -18,6 +18,8 @@ import com.example.auth.domain.user.RegisterDTO;
 import com.example.auth.domain.user.User;
 import com.example.auth.infra.security.TokenService;
 import com.example.auth.repositories.UserRepository;
+import com.example.auth.services.AuthorizationService;
+import com.example.auth.services.UserService;
 
 import jakarta.validation.Valid;
 
@@ -29,6 +31,10 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private UserService userService;
+
     @Autowired
     private TokenService tokenService;
 
@@ -44,13 +50,14 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody @Valid RegisterDTO data) {
+        System.err.println(this.repository.findByEmail(data.email()));
         if (this.repository.findByEmail(data.email()) != null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.senha());
         User newUser = new User(data.email(), encryptedPassword, data.role());
 
-        this.repository.save(newUser);
+        this.userService.addUser(newUser);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

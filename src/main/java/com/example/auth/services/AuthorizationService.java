@@ -1,5 +1,9 @@
 package com.example.auth.services;
 
+import com.example.auth.domain.admin.Admin;
+import com.example.auth.domain.student.Student;
+import com.example.auth.domain.teacher.Teacher;
+import com.example.auth.domain.user.User;
 import com.example.auth.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
